@@ -1,9 +1,13 @@
 import os
 import subprocess
+import ConfigParser
 
-INDIR = "./out/"
+config = ConfigParser.ConfigParser()
+config.read('setting.ini')
+sec = 'develop'
 
-files = os.listdir(INDIR)
+INPUT_DIR = config.get(sec, 'MP4_DIR')
+files = os.listdir(INPUT_DIR)
 for file in files:
-    filePath = INDIR + file
+    filePath = INPUT_DIR + file
     subprocess.call("omxplayer " + filePath, shell=True)
